@@ -51,6 +51,41 @@ function PANEL:Init()
 	self.CloseImage:Center()
 	self.CloseImage:SetImage("vgui/gmaterial/close")
 
+    -- Side Panel
+    self.SidePanel = vgui.Create("DPanel", self.BasePanel)
+    self.SidePanel:SetSize(100, ScrH() * 0.8)
+    self.SidePanel:SetPos(0, 0)
+    self.SidePanel:Dock(LEFT)
+    self.SidePanel:SetBackgroundColor(dahveysf1.config.SideBgColour)
+
+    -- Tabs Buttons
+    for i = 0, 9 do
+
+        for k, v in pairs(dahveysf1.tabs, false) do
+
+            if v.enable then
+                continue
+            end
+
+            if (i != v.order) then
+                continue
+            end
+
+            local currentTab = tabCount
+
+            -- Buttons
+            self.TabButton = vgui.Create("DButton", self.SidePanel)
+            self.TabButton:SetSize(97, 20)
+            self.TabButton:SetPos(0, 0)
+            self.TabButton:Dock(TOP)
+            self.TabButton:DockMargin(0, 3, 0, 73)
+
+            tabCount = tabCount + 1
+
+        end
+
+    end
+
 end
 
 function PANEL:Paint()
