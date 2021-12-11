@@ -1,3 +1,4 @@
+include("cl_config.lua")
 include("vgui/f1menu/cl_base.lua")
 
 function DarkRP.openF1Menu()
