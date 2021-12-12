@@ -8,9 +8,7 @@ function PANEL:Init()
     self:Dock(FILL)
     self:SetVisible(true)
     self.Paint = function (self, w, h)
-
 		draw.RoundedBoxEx( 4, 0, 0, w, h, dahveysf1.config.HeaderBgColour, false, false, false , false )
-
 	end
 
     -- Loading Text
@@ -24,7 +22,6 @@ function PANEL:Init()
     -- HTML Panel
     self.HTML = vgui.Create("DHTML", self)
     self.HTML:Dock(TOP)
-	self.HTML:DockMargin(0, 0, 0, 0)
     self.HTML:SetSize(ScrW() * 0.8, ScrH() * 0.8)
     self.HTML:SetPos(0, 0)
     self.HTML:OpenURL(dahveysf1.config.rulesURL)

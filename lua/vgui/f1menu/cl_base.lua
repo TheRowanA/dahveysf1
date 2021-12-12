@@ -84,14 +84,6 @@ function PANEL:Init()
             self.TabButton:DockMargin(4, 4, 4, 4)
             self.TabButton.Paint = function (this , w, h)
                 
-                --if self.TabButton:IsHovered() then
-                --    draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonSelectedColour)
-                --end
-
-                --if !self.TabButton:IsHovered() then
-                --    draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonColour)
-                --end
-                
                 draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonColour)
 				draw.DrawText( string.upper(dahveysf1.lang[k]), "gmaterialHeader", 48, 10, gmaterial.color.headerText, TEXT_ALIGN_CENTER)
 
