@@ -1,4 +1,7 @@
 include("cl_config.lua")
+
+dahveysf1.currentTab = 0
+
 include("vgui/f1menu/cl_base.lua")
 
 function DarkRP.openF1Menu()

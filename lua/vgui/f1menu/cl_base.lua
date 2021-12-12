@@ -1,7 +1,7 @@
 -- BASE For f1
 local PANEL = {}
 
-
+include("vgui/f1menu/cl_rules.lua")
 
 
 function PANEL:Init()
@@ -59,6 +59,8 @@ function PANEL:Init()
     self.SidePanel:SetBackgroundColor(dahveysf1.config.SideBgColour)
 
     -- Tabs Buttons
+    local tabPreCount, tabCount = 0, 0
+
     for i = 0, 9 do
 
         for k, v in pairs(dahveysf1.tabs, false) do
@@ -75,10 +77,30 @@ function PANEL:Init()
 
             -- Buttons
             self.TabButton = vgui.Create("DButton", self.SidePanel)
-            self.TabButton:SetSize(97, 20)
+            self.TabButton:SetText("")
+            self.TabButton:SetSize(97, 35)
             self.TabButton:SetPos(0, 0)
             self.TabButton:Dock(TOP)
-            self.TabButton:DockMargin(0, 3, 0, 73)
+            self.TabButton:DockMargin(4, 4, 4, 4)
+            self.TabButton.Paint = function (this , w, h)
+                
+                --if self.TabButton:IsHovered() then
+                --    draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonSelectedColour)
+                --end
+
+                --if !self.TabButton:IsHovered() then
+                --    draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonColour)
+                --end
+                
+                draw.RoundedBox(0, 0, 0, 97, 35, dahveysf1.config.ButtonColour)
+				draw.DrawText( string.upper(dahveysf1.lang[k]), "gmaterialHeader", 48, 10, gmaterial.color.headerText, TEXT_ALIGN_CENTER)
+
+			end
+            self.TabButton.DoClick = function()
+
+                tabPreCount, dahveysf1.currentTab = dahveysf1.currentTab, currentTab
+
+            end
 
             tabCount = tabCount + 1
 
@@ -86,12 +108,32 @@ function PANEL:Init()
 
     end
 
+    self:HideShow(dahveysf1.currentTab)
+
 end
 
 function PANEL:Paint()
 
     local w, h = self:GetSize()
     draw.RoundedBox(0, 0, 0, w, h, dahveysf1.config.BgColour)
+    
+end
+
+function PANEL:reset()
+    
+    dahveysf1.currentTab = 0
+    
+end
+
+function PANEL:HideShow(panel)
+
+    if self.TabPanel then
+        self.TabPanel:Remove()
+    end
+
+    if panel == 0 then
+        self.TabPanel = vgui.Create("dahveys_f1menu_rules", self.BasePanel)
+    end
     
 end
 
